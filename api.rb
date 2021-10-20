@@ -2,29 +2,33 @@
 
 require 'active_record'
 require 'json'
+require 'sinatra'
 require 'uri'
 require 'yaml'
 
 
-id = defined?(params) ? params[:id] : 1
+get '/:id' do
 
-application = YAML.load_file('config/application.yml')
+  id = defined?(params) ? params[:id] : 1
 
-ENV.merge!(application)
-db_url = URI(ENV['DATABASE_URL'])
-conf = { 'adapter' => db_url.scheme,
-         'database' => db_url.path[1..],
-         'host' => db_url.host,
-         'username'=> db_url.user,
-         'password' => db_url.password }
+  application = YAML.load_file('config/application.yml')
 
-# Connect to DB
-ActiveRecord::Base.establish_connection(conf)
+  ENV.merge!(application)
+  db_url = URI(ENV['DATABASE_URL'])
+  conf = { 'adapter' => db_url.scheme,
+           'database' => db_url.path[1..],
+           'host' => db_url.host,
+           'username'=> db_url.user,
+           'password' => db_url.password }
 
-# We want to retrieve books from DB
-class Book < ActiveRecord::Base
+  # Connect to DB
+  ActiveRecord::Base.establish_connection(conf)
+
+  # We want to retrieve books from DB
+  class Book < ActiveRecord::Base
+  end
+
+  book = Book.find(id)
+
+  JSON.generate({ title: book.title })
 end
-
-book = Book.find(id)
-
-puts JSON.generate({ title: book.title })
