@@ -29,6 +29,7 @@ def db_conf
     ENV.merge!(application)
   end
   db_url = URI(ENV['DATABASE_URL'])
+  db_url.scheme = 'postgresql' if db_url.scheme == 'postgres'
   conf = { 'adapter' => db_url.scheme,
            'database' => db_url.path[1..],
            'host' => db_url.host,
