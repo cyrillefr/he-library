@@ -11,3 +11,7 @@ gem 'figaro'
 gem 'pg'
 gem 'sinatra'
 gem 'yaml'
+
+group :development, :test do
+  gem 'rubocop'
+end

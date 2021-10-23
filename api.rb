@@ -6,34 +6,28 @@ require 'sinatra'
 require 'uri'
 require 'yaml'
 
+require './models/book'
 
-get '/:id' do
-
-  id = defined?(params) ? params[:id] : 1
-
-  # Connect to DB
-  ActiveRecord::Base.establish_connection(db_conf)
-
-  # We want to retrieve books from DB
-  class Book < ActiveRecord::Base
-  end
-
-  book = Book.find(id)
-
-  JSON.generate({ title: book.title })
+get '/' do
+  JSON.generate({})
 end
 
-def db_conf
+get '/:id' do
+  id = params[:id]
+  # Connect to DB
   unless ENV['DATABASE_URL']
     application = YAML.load_file('config/application.yml')
     ENV.merge!(application)
   end
-  db_url = URI(ENV['DATABASE_URL'])
-  db_url.scheme = 'postgresql' if db_url.scheme == 'postgres'
-  conf = { 'adapter' => db_url.scheme,
-           'database' => db_url.path[1..],
-           'host' => db_url.host,
-           'username'=> db_url.user,
-           'password' => db_url.password }
-  conf
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+
+  json =
+    begin
+      book = Book.find(id)
+      { title: book.title, year_of_writing: book.year_of_writing }
+    rescue ActiveRecord::RecordNotFound
+      {}
+    end
+
+  JSON.generate(json)
 end
