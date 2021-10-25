@@ -13,5 +13,6 @@ gem 'sinatra'
 gem 'yaml'
 
 group :development, :test do
+  gem 'pry'
   gem 'rubocop'
 end

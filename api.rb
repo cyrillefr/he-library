@@ -2,32 +2,30 @@
 
 require 'active_record'
 require 'json'
+require 'pry'
 require 'sinatra'
-require 'uri'
 require 'yaml'
 
 require './models/book'
 
+unless ENV['DATABASE_URL']
+  application = YAML.load_file('config/application.yml')
+  ENV.merge!(application)
+end
+
+before do
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+end
+
 get '/' do
-  JSON.generate({})
+  [200, {}, JSON.generate({})]
 end
 
 get '/:id' do
   id = params[:id]
-  # Connect to DB
-  unless ENV['DATABASE_URL']
-    application = YAML.load_file('config/application.yml')
-    ENV.merge!(application)
-  end
-  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
-  json =
-    begin
-      book = Book.find(id)
-      { title: book.title, year_of_writing: book.year_of_writing }
-    rescue ActiveRecord::RecordNotFound
-      {}
-    end
+  book = Book.find_by id: id
+  json = book.nil? ? {} : { title: book.title, year_of_writing: book.year_of_writing }
 
   JSON.generate(json)
 end
