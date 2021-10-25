@@ -2,7 +2,6 @@
 
 require 'active_record'
 require 'json'
-require 'pry'
 require 'sinatra'
 require 'yaml'
 
