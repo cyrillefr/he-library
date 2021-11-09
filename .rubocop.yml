@@ -1,1 +1,5 @@
 require: rubocop-rspec
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'spec/spec_helper.rb'

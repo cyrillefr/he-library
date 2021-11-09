@@ -18,5 +18,6 @@ group :development, :test do
   gem 'rack-test'
   gem 'rspec'
   gem 'rubocop', require: false
+  gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
 end
