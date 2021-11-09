@@ -1,6 +1,9 @@
 language: ruby
 rvm:
   - 2.7.4
+env:
+  global:
+    - DATABASE_URL=postgres://postgres@localhost/
 script:
   - bundle exec rake spec
   - bundle exec rubocop

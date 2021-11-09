@@ -11,8 +11,11 @@ gem 'figaro'
 gem 'pg'
 gem 'rake'
 gem 'sinatra'
-gem 'solargraph', require: false
 gem 'yaml'
+
+group :development do
+  gem 'solargraph'
+end
 
 group :development, :test do
   gem 'rack-test'
