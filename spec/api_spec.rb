@@ -17,7 +17,7 @@ RSpec.describe 'My simple API' do
     end
 
     it 'returns 200 HTTP code' do
-      expect(last_response.status).to eq(201)
+      expect(last_response.status).to eq(200)
     end
 
     it 'returns an empty Hash' do
