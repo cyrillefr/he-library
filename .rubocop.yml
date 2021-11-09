@@ -3,5 +3,8 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'db/**/*'
-    - 'spec/spec_helper.rb'
+    - spec/spec_helper.rb
     - 'vendor/**/*'
+RSpec/DescribeClass:
+  Exclude:
+    - spec/api_spec.rb
