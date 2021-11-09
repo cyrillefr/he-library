@@ -10,8 +10,12 @@ gem 'activerecord'
 gem 'figaro'
 gem 'pg'
 gem 'sinatra'
+gem 'solargraph', require: false
 gem 'yaml'
 
 group :development, :test do
-  gem 'rubocop'
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 end
