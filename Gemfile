@@ -9,6 +9,7 @@ ruby '2.7.4'
 gem 'activerecord'
 gem 'figaro'
 gem 'pg'
+gem 'rake'
 gem 'sinatra'
 gem 'solargraph', require: false
 gem 'yaml'
