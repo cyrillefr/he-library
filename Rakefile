@@ -19,6 +19,6 @@ end
 
 namespace :db do
   task :load_config do
-    require './app'
+    require './api'
   end
 end
