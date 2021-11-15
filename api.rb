@@ -24,7 +24,7 @@ get '/:id' do
   id = params[:id]
 
   book = Book.find_by id: id
-  json = book.nil? ? {} : { title: book.title, year_of_writing: book.year_of_writing }
+  json = book.nil? ? {} : { id: id, title: book.title, year_of_writing: book.year_of_writing }
 
   JSON.generate(json)
 end

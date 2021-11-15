@@ -24,4 +24,15 @@ RSpec.describe 'My simple API' do
       expect(last_response.body).to eq('{}')
     end
   end
+
+  context 'when ask for a title' do
+    before do
+      get '/1'
+    end
+
+    it 'returns id of the title' do
+      json = JSON.parse last_response.body
+      expect(json['id']).to eq '1'
+    end
+  end
 end
