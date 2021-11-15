@@ -2,11 +2,7 @@ language: ruby
 rvm:
   - 2.7.4
 addons:
-  postgresql: 11
-  apt:
-    packages:
-      - postgresql-11
-      - postgresql-client-11
+  postgresql: 9.2
 services:
   postgres
 env:
