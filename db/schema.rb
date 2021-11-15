@@ -32,31 +32,6 @@ ActiveRecord::Schema.define(version: 2021_03_10_172855) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "image_url"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "media_files", force: :cascade do |t|
-    t.string "title", null: false
-    t.integer "category", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   add_foreign_key "books", "authors"
-  add_foreign_key "items", "users"
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sinatra/activerecord/rake'
 task :default
 
 begin
@@ -10,4 +11,10 @@ begin
   task :spec
 rescue LoadError
   # no rspec available
+end
+
+namespace :db do
+  task :load_config do
+    require './app'
+  end
 end

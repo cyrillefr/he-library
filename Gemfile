@@ -11,6 +11,7 @@ gem 'figaro'
 gem 'pg'
 gem 'rake'
 gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'yaml'
 
 group :development do

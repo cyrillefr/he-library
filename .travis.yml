@@ -1,10 +1,20 @@
 language: ruby
 rvm:
   - 2.7.4
+addons:
+  postgresql: 12
+  apt:
+    packages:
+      - postgresql-12
+      - postgresql-client-12
+services:
+  postgres
 env:
   global:
-    - DATABASE_URL=postgres://postgres@localhost/
+    - DATABASE_URL=postgres://travis@localhost:5433/
 script:
+  - bundle exec rails db:create
+  - bundle exec rails db:schema:load
   - bundle exec rake spec
   - bundle exec rubocop
 deploy:
