@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-require 'sinatra/activerecord/rake'
+# must include uri sinatra-activerecord no longer compatible with
+# ActiveRecord. 'uri' must be required before.
 require 'uri'
+require 'sinatra/activerecord/rake'
 
 task :default
 
