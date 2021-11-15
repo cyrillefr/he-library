@@ -4,7 +4,7 @@ rvm:
 addons:
   postgresql: 9.2
 services:
-  postgres
+  - postgresql
 env:
   global:
     - DATABASE_URL=postgres://postgres@localhost:5432/library_test
