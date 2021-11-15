@@ -13,8 +13,8 @@ env:
   global:
     - DATABASE_URL=postgres://travis@localhost:5433/
 script:
-  - bundle exec rails db:create
-  - bundle exec rails db:schema:load
+  - bundle exec rake db:create
+  - bundle exec rake db:schema:load
   - bundle exec rake spec
   - bundle exec rubocop
 deploy:
