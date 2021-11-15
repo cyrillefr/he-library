@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'sinatra/activerecord/rake'
+require 'uri'
+
 task :default
 
 begin
