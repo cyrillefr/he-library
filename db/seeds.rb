@@ -15,11 +15,13 @@ Book.create!(
   [
     {
       title: "The black Dahlia",
-      year_of_writing: "1987"
+      year_of_writing: "1987",
+      author_id: 1
     },
     {
       title: "American Tabloid",
-      year_of_writing: "1995"
+      year_of_writing: "1995",
+      author_id: 1
     }
   ]
 )
