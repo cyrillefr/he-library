@@ -3,18 +3,19 @@
 require 'active_record'
 require 'json'
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'yaml'
 
 require './models/book'
 
-unless ENV['DATABASE_URL']
-  application = YAML.load_file('config/application.yml')
-  ENV.merge!(application)
+APP_CONF_FILE = 'config/application.yml'
+
+if File.exist? APP_CONF_FILE
+  conf = YAML.load_file(APP_CONF_FILE)
+  ENV.merge!(conf)
 end
 
-before do
-  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
-end
+set :database, ENV['DATABASE_URL']
 
 get '/' do
   [200, {}, JSON.generate({})]
