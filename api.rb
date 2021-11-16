@@ -6,6 +6,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'yaml'
 
+require './models/author'
 require './models/book'
 
 APP_CONF_FILE = 'config/application.yml'
